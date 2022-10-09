@@ -40,22 +40,22 @@ const move =function(dir){
   else if(dir=='w'){
     x-=10
   };
-  let message = 'your current position x = ${x}, y= ${y}'
 
-  return message;
+  return ;
 };
 
 const moveUser = function(steps){
   while(steps){
     steps--;
-    console.log(steps)
     let direction = prompt('direction?, n e s w');
-    console.log(direction);
-    return move(direction);
+    position = move(direction);
+    console.log(position)
   }
+  return position;
 }
 
 console.log(moveUser(2))
+
 
 // 3 задание---------------------------------
 
@@ -80,7 +80,8 @@ const delSomeData = function (array){
     if(someData.length == 0){
       alert('delete nothing');
       break;
-    }
+    } 
+    // if я знаю что не работает. но не знаю почему!
     else{
       c+=1;
       delete someData[c];
@@ -99,28 +100,35 @@ console.log(delSomeData(someData));
 
 // 4 задание---------------------------------------------------
 
-// let figurs = [
-//   {
-//     figure:"circle",
-//     radius:10
-//   },
-//   {
-//     figure:'Squar',
-//     sizeA:4,
-//     sizeB:4
-//   },
-//   {
-//     figure:'Rectangle',
-//     sizeA:4,
-//     sizeB:8
-//   }
-// ];
+let figurs = [
+  {
+    figure:"circle",
+    radius:10
+  },
+  {
+    figure:'Squar',
+    sizeA:4,
+    sizeB:4
+  },
+  {
+    figure:'Rectangle',
+    sizeA:4,
+    sizeB:8
+  }
+];
 
-// function schet(obj){
-//   return
-// }
+function schet(array){
+  obj1 = array[0];
+  let circleRes = "scho?";
+  obj2 = array[1];
+  let squareRes = obj2.sizeA * obj2.sizeB;
+  obj3 = array[2];
+  let rectRes = obj3.sizeA * obj3.sizeB;
 
-// console.log(schet());
+  return 'Circle S=' + circleRes + ' Square S=' + squareRes + ' Rectangle S=' + rectRes;
+}
+
+console.log(schet(figurs));
 
 
 // 5 задание---------------------------------------------------

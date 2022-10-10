@@ -25,36 +25,46 @@
 
 // 2 задание---------------------------------
 
-const move =function(dir){
-  let x = 0;
-  let y = 0;
-  if(dir=='n'){
-    y+=10
-  }
-  else if(dir=='e'){
-    x+=10
-  }
-  else if(dir=='s'){
-    y-=10
-  }
-  else if(dir=='w'){
-    x-=10
-  };
+let x=0, y=0;
+let position = [x, y];
 
-  return ;
+const move =function(dir){
+  let message
+  if(dir=='n' || dir=='в'){
+    position[1]+=10
+    message = 'Идёт перемещение вверх'
+  }
+  else if(dir=='e' || dir=='п'){
+    position[0]+=10
+    message = 'Идёт перемещение вправо'
+  }
+  else if(dir=='s' || dir=='н'){
+    position[1]-=10
+    message = 'Идёт перемещение вниз'
+  }
+  else if(dir=='w' || dir=='л'){
+    position[0]-=10
+    message = 'Идёт перемещение влево'
+  };
+  console.log(message)
+  return 'x = ' + position[0] + ' and y = ' + position[1];
 };
 
 const moveUser = function(steps){
+  if(steps=='more'){
+    steps = prompt('how much steps?')
+  }
+  let position
   while(steps){
     steps--;
-    let direction = prompt('direction?, n e s w');
+    let direction = prompt('direction?, (n e s w) или (в п н л)');
     position = move(direction);
-    console.log(position)
+    // console.log(position)
   }
-  return position;
+  return console.log('your current pos '+ position);
 }
 
-console.log(moveUser(2))
+// console.log(moveUser(2))
 
 
 // 3 задание---------------------------------

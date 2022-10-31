@@ -10,9 +10,10 @@ section{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
 }
-ul.listofLinks{
+ul{
   list-style: none;
   display: flex;
   flex-flow: row nowrap;

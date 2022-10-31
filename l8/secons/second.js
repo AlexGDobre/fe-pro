@@ -28,9 +28,28 @@ window.onload=()=>{
   ]
   
   let mainList = document.querySelector('.listofLinks');
+  let catsList = document.querySelector('.listofLinksOnlyCats');
 
   const createLink = function(obj){
     obj.forEach(item => {
+      let words = item.alt.split(' ');
+
+      for (const wordNum of words) {
+        if(wordNum == 'cat'){
+          let licat = document.createElement('li');
+          catsList.appendChild(licat);
+          let aLinkcat = document.createElement('a');
+          aLinkcat.setAttribute('href',`${item.href}`);
+          licat.appendChild(aLinkcat)
+  
+          let imgContcat = document.createElement('img');
+          imgContcat.setAttribute('src', `${item.imgPath}`);
+          imgContcat.setAttribute('alt', item.alt)
+          
+          aLinkcat.appendChild(imgContcat)
+        }
+      }
+
       let li = document.createElement('li');
       mainList.appendChild(li);
       let aLink = document.createElement('a');
@@ -42,6 +61,7 @@ window.onload=()=>{
       imgCont.setAttribute('alt', item.alt)
       
       aLink.appendChild(imgCont)
+      
     });
   }
 

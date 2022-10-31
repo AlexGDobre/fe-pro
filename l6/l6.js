@@ -60,16 +60,16 @@ console.log(centuary(prompt('enter year')));
 
 // 5задание-------------------------------------
 
-function days(month){
-  let message = `In ${month}`
-  switch(month){
-    case 'oct':
-      return `${message} 31 days`
-    case 'nov':
-      return `${message} 30 days`
-    default:
-      return `${message} 29 days`
-  }
-}
+// function days(month){
+//   let message = `In ${month}`
+//   switch(month){
+//     case 'oct':
+//       return `${message} 31 days`
+//     case 'nov':
+//       return `${message} 30 days`
+//     default:
+//       return `${message} 29 days`
+//   }
+// }
 
-console.log(days(prompt('which months?')))
+// console.log(days(prompt('which months?')))

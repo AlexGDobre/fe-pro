@@ -23,24 +23,26 @@ const experimentalUser2 = new UserInfo('NazarTop','20')
 const experimentalUser3 = new UserInfo('AlinaKov', '17')
 const experimentalUser4 = new UserInfo('CateKun','46')
 
-let arrayUsers = [experimentalUser1, experimentalUser2, experimentalUser3, experimentalUser4],
-sortAgeToOld, sortAgeFromOld;
+let arrayUsers = [experimentalUser1, experimentalUser2, experimentalUser3, experimentalUser4];
 // console.log(arrayUsers)
-let userAge =[];
+// const userAge =[];
+
 const sortByAge = function(array){
-  
+  let sortAgeToOld=[], sortAgeFromOld=[];
   for(let c=0; c<array.length;c++){
     let obj = array[c];
     let age = obj.age;
-    userAge.push(age)
+    // userAge.push(age)
+    sortAgeToOld.push(age)
+    sortAgeFromOld.push(age)
   }
-  return console.log(userAge), console.log(sortAgeToOld = userAge.sort(function(a,b){return a-b})), console.log(sortAgeFromOld = userAge.sort(function(a,b){return b-a}));
+  sortAgeToOld.sort(function(a,b){return a-b});
+  sortAgeFromOld.sort(function(a,b){return b-a})
+  console.log(sortAgeToOld)
+  console.log(sortAgeFromOld)
 }
 
-console.log(sortByAge(arrayUsers))
-// console.log(userAge)
-// console.log(sortAgeToOld)
-// console.log(sortAgeFromOld)
+sortByAge(arrayUsers)
 
 
 // 2задание---------------------------------------
@@ -74,7 +76,7 @@ ObjConstructor.prototype.d = function(obj){
 
 let name = 'alex'
 
-console.log(name.length)
+// console.log(name.length)
 
 function string(name){
   let l = name.length
@@ -85,4 +87,4 @@ function string(name){
   }
   return firstLetter + lastLetter
 }
-console.log(string(name))
+console.log(string('bod'))

@@ -28,21 +28,41 @@
 let x=0, y=0;
 let position = [x, y];
 
+const wordsUpper =function(word, dirArray){
+  let upDir =['n','в','вверх','north','up','upper','above','выше'];
+  let rightDir =['e','вправо',"п",'east'];
+  let leftDir =['w','west',"влево","л"];
+  let downDir =['s','south','вниз','н'];
+  let objects =[upDir, rightDir,leftDir,downDir]
+  
+  let lowercase = word.toLowerCase();
+
+  for (const iterator of objects[dirArray]) {
+    if(iterator == lowercase){
+      return true
+    }
+  }
+  
+}
 const move =function(dir){
-  let message
-  if(dir=='n' || dir=='в'){
+  let message ='nothing'
+  // if(dir=='n' || dir=='в' || dir=='up'){
+  //   position[1]+=10
+  //   message = 'Идёт перемещение вверх'
+  // }
+  if(wordsUpper(dir,0)){
     position[1]+=10
     message = 'Идёт перемещение вверх'
   }
-  else if(dir=='e' || dir=='п'){
+  else if(wordsUpper(dir,1)){
     position[0]+=10
     message = 'Идёт перемещение вправо'
   }
-  else if(dir=='s' || dir=='н'){
+  else if(wordsUpper(dir,3)){
     position[1]-=10
     message = 'Идёт перемещение вниз'
   }
-  else if(dir=='w' || dir=='л'){
+  else if(wordsUpper(dir,2)){
     position[0]-=10
     message = 'Идёт перемещение влево'
   };

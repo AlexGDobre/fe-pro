@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document9</title>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    .hide{
+      display: none !important;
+    }
+    img{
+      max-width: 100%;
+      width: auto;
+    }
+    .selectorAllIn{
+      display: grid;
+      grid-template-rows: 50px auto 50px;
+      grid-template-areas: 
+      '. u .'
+      'l m r'
+      '. d .'
+      ;
+    }
+    @keyframes translateWind{
+      0%{
+        transform:translate(0,0)
+      }
+      100%{
+        transform:translate(-400,0)
+      }
+    }
+  </style>
+
+  <!-- <script src="first.js"></script> -->
+
+  <script src="second.js"></script>
+
+  <!-- <script src="third.js"></script> -->
+
+  <!-- <script src="four.js"></script> -->
+
+  <!-- <script src="extraSix.js"></script> -->
+  
+</head>
+<body>
+  <section id="task-first" class="hide" style="display: grid;grid-template-columns:repeat(10,50px);">
+  </section>
+
+  <button id="btnHide" style="height: 50px;">click to hide</button>
+
+  <section class="task-second hide">
+    <button id="callBtn">task2nd open window</button>
+    <div class="modalWindow hide">
+      <div class="rectInModal">
+        <button id="offModal">close window</button>
+      </div>
+    </div>
+  </section>
+
+  <section class='task-third'>
+    <div>
+
+    </div>
+    <div>
+      <button id="btnStop">Stop interval</button>
+      <button id="btnStart">Set interval</button>
+    </div>
+    
+  </section>
+
+  <section class="tark-four">
+    <div class="selectorAllIn hide">
+      <button>↑</button>
+      <button>→</button>
+      <button>↓</button>
+      <button>←</button>
+      <div class="mainBody"></div>
+    </div>
+  </section>
+</body>
+</html>

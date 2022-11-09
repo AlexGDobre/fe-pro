@@ -7,7 +7,7 @@ window.onload =()=>{
     // headerfirst.classList.toggle('hide');
     firstSection.classList.toggle('hide');
   }
-  
+  firstSection.classList.toggle('hide');
 
   let headerfirst = document.querySelector('h1');
   

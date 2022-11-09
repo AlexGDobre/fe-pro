@@ -1,7 +1,6 @@
 window.onload=()=>{
   let secTask=document.querySelector('.task-second');
-  secTask.style.position='relative';
-  secTask.style.order='-1';
+  secTask.setAttribute('style','position:relative;')
 
   console.log(secTask.classList.toggle('hide'));
 
@@ -10,31 +9,30 @@ window.onload=()=>{
 
   console.log(window)
   let inHe = window.innerHeight;
+  let outerHeight =window.outerHeight;
 
-  modalWind.setAttribute('style','background:rgba(0,0,0,0.7);position:relative;width:100%;display:flex;justify-content:center;');
-  console.log(modalWind.style.height)
-  rect.setAttribute('style','background:white;width:200px;height:200px;position:absolute;bottom:0;');
+  modalWind.setAttribute('style','background:rgba(0,0,0,0.7);width:100%;position:fixed;z-index:2;');
+
+  rect.setAttribute('style','background:white;width:200px;height:200px;position:relative;margin:0 auto;');
 
   
 
   let callBtn = document.querySelector('#callBtn');
   let closeBtn = document.querySelector('#offModal');
+  closeBtn.setAttribute('style','height:2em;')
 
 
   callBtn.addEventListener('click',(e)=>{
     modalWind.classList.remove('hide');
-    modalWind.style.height= (inHe - 100) + 'px';
-    rect.style.bottom='-200px';
-    let value1= inHe/2;
-
-    rect.style.bottom=`200px`;
-    // rect.style.transform= translate(value1, 0);
-    // rect.style.translate=`${value1},${0}`
+    modalWind.style.height= inHe + 'px';
+    rect.style.top=(inHe/2)-100 + 'px';
   });
 
-  closeBtn.addEventListener('click',(e)=>{
+
+  modalWind.onclick=()=>{
+    modalWind.classList.toggle('hide')
+    closeBtn.addEventListener('click',(e)=>{
     modalWind.classList.toggle('hide');
   });
-
-
+  }
 }

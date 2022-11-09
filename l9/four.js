@@ -33,19 +33,21 @@ window.onload=()=>{
     btns[c].style.cssText +='height:50px;width:50px';
   }
 
-  btns[0].onclick=()=>{
+  let [top,right,down,left]=btns;
+
+  top.onmousemove=()=>{
     divAllIn.style.top = `${(allInTop - 30)}px`;
     divAllIn.style.bottom =`${(allInBottom + 30)}px`;
   }
-  btns[1].onclick=()=>{
+  right.onmousemove=()=>{
     divAllIn.style.right = `${(allInRight - 30)}px`;
     divAllIn.style.left =`${(allInLeft+30)}px`;
   }
-  btns[2].onclick=()=>{
+  down.onmousemove=()=>{
     divAllIn.style.bottom = `${(allInBottom - 30)}px`;
     divAllIn.style.top = `${(allInTop +30)}px`;
   }
-  btns[3].onclick=()=>{
+  left.onmousemove=()=>{
     divAllIn.style.left = `${(allInLeft - 30)}px`;
     divAllIn.style.right=`${(allInRight)+30}px`;
   }

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our webpage</title>
+  <script src="form.js"></script>
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    .navigation{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .registration, .login{
+      background: rgba(0,0,0,0.3);
+      width: 100%;
+      position: fixed;
+    }
+    .registration>div, .login>div{
+      background: black;
+      width: 300px;
+      margin: 0 auto;
+      border-radius: 11px;
+      position: relative;
+    }
+    .login>div{
+      background: white;
+    }
+    .registration input, .buttons button, .login input{
+      border-color: blueviolet;
+      border-radius: 9px;
+      padding: 0.5em;
+      margin: 0px 20px;
+      background-color: transparent;
+      color: white;
+    }
+    .registration form, .buttons, .login form{
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      padding: 1.3em 0;
+    }
+    .buttons{
+      padding: 0;
+      padding-top: 2em;
+    }
+    .buttons button{
+      width: auto;
+      background-color: darkviolet;
+      border-radius: 20px;
+    }
+    .buttons button:hover{
+      background-color: blueviolet;
+      border-color: azure;
+    }
+    #loginFormBtn{
+      width: 50%;
+      margin: 2em auto;
+      padding: 0.5em 0;
+      background: blueviolet;
+      border-color: blueviolet;
+      color: white;
+      border: none;
+      border-radius: 20px;
+    }
+    .login input{
+      color: black;
+    }
+
+    .header1, .header2{
+      font-size: 40px;
+      font-weight: 600;
+      color: white;
+      text-align: center;
+      padding: 0.5em 0;
+    }
+    .header2{
+      color: blueviolet;
+    }
+
+    .hide{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="registration hide">
+
+    <div>
+      <p class="header1">Register</p>
+      <form action="#" name="myForm">
+        <input type="text" placeholder="Full Name" id="name" name="name" autofocus="true">
+        <input type="email" placeholder="E-mail" id="mailbox" name="mailbox">
+        <input type="tel" placeholder="Phone" id="phonenumber" name="tel">
+        <input type="password" placeholder="Password" id="fullpass" name="pass">
+        <input type="password" placeholder="Confirm Password" id="fullpassrepeat" name="passrepeat">
+        <div class="buttons">
+          <button id="sendRegForm" name="blabla">Register</button>
+          <button id="openLogForm" class="loginBtn" type="button">Have account? Sign in</button>
+        </div>
+        
+      </form>
+    </div>
+    
+  </section>
+
+  <section class="login hide">
+    
+    <div>
+      <p class="header2">Login</p>
+      <form action="#" name="myLogForm">
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button id="loginFormBtn" disabled>LOGIN</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="navigation">
+    <nav>
+      <button id="registerBtn">Register now</button>
+      <button id="loginBtn" class="loginBtn">Sign in</button>
+    </nav>
+    <div class="output"></div>
+  </section>
+</body>
+</html>

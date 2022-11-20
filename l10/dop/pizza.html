@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mmm pizza</title>
+  <link rel="stylesheet" href="pizza.css">
+  <script src="pizza.js"></script>
+</head>
+<body>
+  <section class="firstSection">
+    <div class="firstDiv">
+
+      <form action="#" name="pizzaForm">
+        <div class="pSize">
+          <h3>Pizza size:</h3>
+          <label for="pSizeSs">small 50</label>
+          <input id="pSizeSs" type="radio" value="50" name="pSize">
+
+          <label for="pSizeMs">medium 75</label>
+          <input id="pSizeMs" type="radio" value="75" name="pSize">
+
+          <label for="pSizeLs">large 90</label>
+          <input id="pSizeLs" type="radio" value="90" name="pSize">
+        </div>
+
+        <div class="pTopp">
+          <h3>Topping:</h3>
+          <!-- <div>
+            <input id="pTopp1" type="checkbox" name="pTopp" value="10">
+            <label for="pTopp1">Tomato</label>
+          </div>
+          <div>
+            <input id="pTopp2" type="checkbox" name="pTopp" value="20" >
+            <label for="pTopp2">Cheese</label>
+          </div>
+          <div>
+            <input id="pTopp3" type="checkbox" name="pTopp" value="30">
+            <label for="pTopp3">Mushroom</label>
+          </div> -->
+        </div>
+
+        <div class="pDeliv">
+          <h3>Способ доставки:</h3>
+          <section class="pDelivSection">
+            <div>
+              <label for="pDelivHome">Доставить курьером 40</label>
+              <label for="pDelivCafe">Забрать в одном из наших заведений</label>
+            </div>
+            <div>
+              <input type="radio" id="pDelivHome" name="pDeliv" value="40">
+              <input type="radio" id="pDelivCafe" name="pDeliv">
+            </div>
+          </section>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;margin-top:20px;">
+          <div class="price"></div>
+          <button id="orderBtn" type="submit" disabled>Make order</button>
+        </div>
+        
+
+      </form>
+    </div>
+  </section>
+</body>
+</html>

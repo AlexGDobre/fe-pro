@@ -67,9 +67,9 @@ window.onload=function(e){
   }
   reg.tel.onchange=(e)=>{
     let data =e.target.value;
-    let pattern = /^\+38[0-9]{3}[0-9]{2}[0-9]{2}[0-9]{3}/;
-    // let res =data.match(pattern);
-    let res=pattern.test(data);
+    let pattern = /^\+38[0-9]{10}/;
+    let res =data.match(pattern);
+    // let res=pattern.test(data);
     console.log('tel ',res)
     if(!res){
       console.log('ваш телефон введён не коректно')

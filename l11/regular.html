@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    :root{
+      --body-bg: #333;
+    }
+    body{
+      background-color: var(--body-bg);
+    }
+    #reg{
+      display: flex;
+      flex-direction: column;
+      border: 1px solid black;
+      padding: 10px;
+      row-gap: 6px;
+      max-width: 300px;
+      align-items: center;
+    }
+    #reg label{
+      display: block;
+      text-shadow: 0 1px 2px white;
+    }
+  </style>
+  <script src="reg.js"></script>
+</head>
+<body>
+  <button class="logRelog">Войти</button>
+
+  <form action="#" id="reg">
+    <div>
+      <label for="nick">Nickname</label>
+      <input type="text" name="nick">
+    </div>
+    <div>
+      <label for="email">email</label>
+      <input type="email" name="email">
+    </div>
+    <div>
+      <label for="tel">Tel number</label>
+      <input type="tel" name="tel" value="+">
+    </div>
+    <div>
+      <label for="pin">pincode</label>
+      <input type="text" name="pin" maxlength="4">
+    </div>
+    <input type="submit" value="sub">
+  </form>
+
+  <form action="#">
+    <input type="color">
+  </form>
+</body>
+</html>

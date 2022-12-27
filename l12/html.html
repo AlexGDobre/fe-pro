@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TryCatch.Cookie.svg.canvas</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.onload = () => {
+      let prompt_btn = document.querySelector('.prompt-btn');
+      prompt_btn.onclick = () => {
+        try {
+          let data = prompt('any type of data');
+          let pattern = /\d/g;
+          let res = pattern.test(data);
+          document.lastElementChild
+          if (!res) {
+            throw new SyntaxError('Your input data is not a number')
+          }
+          data = parseInt(data);
+          if (data > 100) {
+            throw new SyntaxError('Your number cant be more than a hundred(100)')
+          }
+          else if (data < 10) {
+            throw new SyntaxError('Your number cant be lower than ten(10)')
+          }
+        }
+        catch (err) {
+          alert('Custom error: ' + err.message)
+        }
+      }
+
+      function makeCookie() {
+        let cookie_btn = document.querySelector('#checkCookie-btn');
+        let name = 'alex';
+        let property = '1min';
+        let data = new Date(Date.now() + 60000);
+        document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(property)}; expires=${data}`;
+        cookie_btn.onclick = (e) => {
+          alert(document.cookie);
+        }
+      }
+      makeCookie();
+
+
+      let create_btn = document.querySelector('#sendShape-btn');
+      let [...numInputs] = document.querySelectorAll('.create_property-input input');
+      let wBull = false, hBull = false, bules = [wBull, hBull];
+      let pattern = /\D/;
+
+      for (let c = 0; c < numInputs.length; c++) {
+        numInputs[c].onchange = (e) => {
+          if (pattern.test(numInputs[c].value)) {
+            bules[c] = false;
+            alert('Постарайтесь избегать иных символов кроме цифр');
+          }
+          else if (numInputs[c].value.length == '0') {
+            bules[c] = false;
+          }
+          else {
+            bules[c] = true;
+          }
+          testBull(bules);
+        }
+      }
+      function testBull(arr) {
+        if (arr[0] && arr[1]) {
+          create_btn.removeAttribute('disabled');
+        }
+        else {
+          create_btn.setAttribute('disabled', 'disabled');
+        }
+      }
+      // let circleInput = shape;
+      // console.log(shape);
+      let shapeBull = false;
+      shape.onclick = (e) => {
+        if (shapeBull) {
+          shapeBull = false;
+        }
+        else {
+          shapeBull = true;
+        }
+      }
+
+      let form = form_ofCreation;
+      let canwas = document.querySelector('.canvas_ofCreation');
+      create_btn.onclick = (e) => {
+        e.preventDefault();
+        let width = form.input_width.value;
+        let height = form.input_height.value;
+
+        function deleteShape() {
+          let item = canwas.lastElementChild;
+          if (item != null) {
+            canwas.removeChild(item)
+          }
+        };
+
+        function createShape(w, h) {
+          deleteShape();
+          let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          svg.setAttribute('style', 'border:1px dashed black;');
+          svg.setAttribute('width', w);
+          svg.setAttribute('height', h);
+          if (shapeBull) {
+            let elli = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+            elli.setAttribute('cy', h / 2)
+            elli.setAttribute('cx', w / 2)
+            elli.setAttribute('rx', w / 2);
+            elli.setAttribute('ry', h / 2);
+            elli.setAttribute('stroke', 'red');
+            elli.setAttribute('stroke-width', '4')
+            elli.setAttribute('fill', 'yellow');
+            svg.appendChild(elli);
+          }
+          else {
+            let rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('width', w);
+            rect.setAttribute('height', h);
+            rect.setAttribute('fill', 'green');
+            rect.setAttribute('stroke-width', '2px');
+            rect.setAttribute('stroke', 'red');
+            svg.appendChild(rect);
+          }
+          canwas.appendChild(svg)
+        }
+        createShape(width, height);
+      }
+      let canvasEl = document.querySelector('canvas');
+      let x = canvasEl.width / 2;
+      let y = canvasEl.height / 2;
+      let ctx = canvasEl.getContext('2d');
+      ctx.beginPath();
+      ctx.arc(x,y,50,0,2*Math.PI, false);
+      ctx.fillStyle = 'lightblue';
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = 'silver';
+      ctx.stroke();
+      ctx.font = 'bold 20px Aria';
+      ctx.fillStyle='red';
+      ctx.fillText('this is a text', x - 50,y);
+
+      let data = [16,68,20,30,54];
+      let canvasChart = document.querySelector('#charts');
+      let ccw = canvasChart.width /data.length;
+      console.log(ccw)
+      let cofc = canvasChart.getContext('2d');
+      cofc.fillStyle = 'lightblue';
+      for (let i = 0; i < data.length; i++) {
+        let dp = data[i];
+        cofc.fillRect(2 + i*ccw, 200-dp*2-10, ccw-4, dp*2);
+      }
+      cofc.fillStyle = 'black';
+      cofc.lineWidth = 2;
+      cofc.beginPath();
+      cofc.moveTo(2,0);
+      cofc.lineTo(2,190);
+      cofc.lineTo(400,190);
+      cofc.stroke();
+
+      cofc.fillStyle = 'black';
+      for (let i = 0; i < 7; i++) {
+        cofc.fillText((5-i)*(190/5) + "",4, i*(190/5));
+        cofc.beginPath();
+        cofc.moveTo(2, i*(190/5));
+        cofc.lineTo(6, i*(190/5));
+        cofc.stroke();
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <button class="prompt-btn">Send data for 1st task</button>
+  <button id="checkCookie-btn">Check a cookie for 3rd task</button>
+  <section>
+    <form action="#" id="form_ofCreation">
+      <p class="form_ofCreation-title">Create an object</p>
+      <hr>
+      <div class="create_property">
+        <div class="create_property-label">
+          <label for="input_width">Width:</label>
+          <label for="input_height">Height:</label>
+        </div>
+        <div class="create_property-input">
+          <input type="text" name="input_width">
+          <input type="text" name="input_height">
+        </div>
+      </div>
+      <div class="create_property-circle">
+        <label for="input_shape">Create an elipse?</label>
+        <input type="checkbox" name="input_shape" id="shape" value="elipse">
+      </div>
+      <hr>
+      <input type="submit" value="submit" id="sendShape-btn" disabled>
+      <!-- <button class="sendShape-btn" type="submit">Create</button> -->
+    </form>
+    <div class="canvas_ofCreation">
+
+    </div>
+    <canvas width="200" height="200"  style="border: 1px dashed grey"></canvas>
+    <canvas id="charts" width="400" height="200" style="border: 1px dashed gold"></canvas>
+  </section>
+</body>
+
+</html>

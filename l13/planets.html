@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background: rgb(40, 34, 49);
+    }
+
+    .container {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+    #planets{
+      display:flex;
+    }
+    .planetTitle {
+      color: white;
+    }
+    .planetDescription{
+      color:white;
+    }
+  </style>
+  <script>
+    window.onload = () => {
+      let [...btns] = document.querySelectorAll('button');
+
+      function artartplanet(res){
+        let main = document.querySelector('#planets');
+        if(main.children.length != 0){
+          let count = main.children.length;
+          for (let i = 0; i < count; i++) {
+            main.removeChild(main.lastElementChild)
+          }
+        }
+        
+        for (let i = 0; i < res.length; i++) {
+          let { name, diameter, population } = res[i];
+
+          let planetFrame = document.createElement('dl');
+          planetFrame.className = `planetFrame`;
+          planetFrame.id = `planetFrame-${name}`;
+
+          let dt = document.createElement('dt');
+          dt.className = 'planetTitle';
+          dt.innerText = `${name}`;
+          let dd = document.createElement('dd');
+          dd.className = 'planetDescription';
+          dd.innerText=`Diameter: ${diameter}`;
+          let ddd = document.createElement('dd');
+          ddd.className='planetDescription'
+          ddd.innerText=`Population: ${population}`;
+          planetFrame.appendChild(dt);
+          planetFrame.appendChild(dd);
+          planetFrame.appendChild(ddd);
+          main.appendChild(planetFrame);
+        }
+      }
+
+      function artPlanet(res, index) {
+        let popul = [];
+        let populSort = [];
+        let populUnknown =[];
+        let diameterArr = [];
+        let diameterSort = [];
+
+        for (let i = 0; i < res.length; i++) {
+          let { name, diameter, population } = res[i];
+          if(population == 'unknown'){
+            populUnknown.push(population);
+          }
+          else{
+            popul.push(population);
+          }
+        }
+        popul.sort((a, b) => a - b);
+        for (const pop of popul) {
+          for (let c = 0; c < res.length; c++) {
+            if(pop == res[c].population) {
+              populSort.push(res[c]);
+            }
+          }
+        }
+
+        for (let i = 0; i < res.length; i++) {
+          let { name, diameter, population } = res[i];
+          diameterArr.push(diameter);
+        }
+        diameterArr.sort((a, b) => a - b);
+        for (const pop of diameterArr) {
+          for (let c = 0; c < res.length; c++) {
+            if (pop == res[c].diameter) {
+              diameterSort.push(res[c]);
+            }
+          }
+        }
+        res.forEach((item) => {
+          console.log(item.population)
+          if(item.population == 'unknown'){
+            populSort.push(item);
+          }
+        });
+
+        if(index == 0){
+          artartplanet(res);
+        }
+        else if(index == 1){
+          artartplanet(diameterSort)
+        }
+        else if(index == 2){
+          artartplanet(populSort)
+        }
+      }
+
+      function fetchim(index) {
+        fetch('https://swapi.dev/api/planets')
+          .then(response => response.json())
+          .then((res) => { return res.results })
+          .then((res) => {
+            if (index == 0) {
+              artPlanet(res, index);
+            }
+            if (index == 1) {
+              artPlanet(res, index);
+            }
+            if (index == 2) {
+              artPlanet(res, index);
+            }
+          })
+      }
+
+      function click(btn, index) {
+        btn.onclick = (e) => {
+          fetchim(index)
+        }
+      }
+
+      for (let i = 0; i < btns.length; i++) {
+        if (i == 0) {
+          click(btns[0], 0)
+        }
+        else if (i == 1) {
+          click(btns[1], 1)
+        }
+        else if (i == 2) {
+          click(btns[2], 2)
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <header class="container">
+    <nav>
+      <button id="btn_planets">Planets</button>
+      <button id="btn_sortSize">Planets by size</button>
+      <button id="btn_sortPopul">Planets by population</button>
+    </nav>
+  </header>
+  <main class="container">
+    <section id="planets">
+
+    </section>
+  </main>
+</body>
+
+</html>

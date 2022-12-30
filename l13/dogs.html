@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dogs</title>
+  <style>
+    #listForDogs {
+      width: 200px;
+      border: 1px solid;
+    }
+    #image {
+      position: fixed;
+      top: 50px;
+      left: 20%;
+      min-width: 500px;
+      height: 600px;
+      border:1px dotted black;
+      display: flex;
+      justify-content: center;
+    }
+    img{
+      max-height: 600px;
+    }
+  </style>
+  <script>
+    window.onload = () => {
+
+      function hover(lishka, name, value) {
+        let div = document.querySelector('#image');
+        lishka.onclick = (e) => {
+          let imgChil = div.lastElementChild;
+          if(imgChil != null){
+            div.removeChild(imgChil)
+          }
+          let img = document.createElement('img');
+          img.setAttribute('width', 'auto');
+          img.setAttribute('height', 'auto');
+          if(value != undefined){
+            fetch(`https://dog.ceo/api/breed/${name}/${value}/images/random`)
+            .then(response => response.json())
+            .then(obj => obj.message)
+            .then(uri=>img.src=uri).catch((err) => `Error ${err}`)
+          }
+          else{
+            fetch(`https://dog.ceo/api/breed/${name}/images/random`)
+            .then(response => response.json())
+            .then(obj => obj.message)
+            .then(uri=>img.src=uri).catch((err) => `Error ${err}`)
+          }
+          div.append(img);
+        }
+      }
+
+      let ulMain = document.querySelector('#listForDogs');
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://dog.ceo/api/breeds/list/all');
+      xhr.onreadystatechange = function (e) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          let objData = xhr.response;
+          objData = objData.message;
+          let propValues = Object.values(objData);
+          let propNames = Object.keys(objData);
+          for (let i = 0; i < propNames.length; i++) {
+            let liMain = document.createElement('li');
+            liMain.innerText = propNames[i];
+            hover(liMain, propNames[i]);
+            if (propValues[i] !== 0) {
+              let ulSec = document.createElement('ul');
+              propValues[i].forEach(valu => {
+                let liSec = document.createElement('li');
+                liSec.innerText = valu;
+                hover(liSec, propNames[i],valu);
+                ulSec.appendChild(liSec);
+              });
+              liMain.appendChild(ulSec);
+            }
+            ulMain.appendChild(liMain);
+          }
+        }
+      }
+      xhr.responseType = 'json';
+      xhr.send();
+
+
+    }
+  </script>
+</head>
+
+<body>
+  <ul id="listForDogs">
+
+  </ul>
+  <div id="image">
+
+  </div>
+</body>
+
+</html>

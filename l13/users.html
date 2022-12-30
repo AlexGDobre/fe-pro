@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.onload = () => {
+      function createCards(obj) {
+        let secCard = document.querySelector('#forCards');
+        let str = {
+          titles: [
+            'Name',
+            'Email',
+            'Phone',
+            'Website',
+          ],
+          links: [
+            'email',
+            'phone',
+            'Website',
+          ],
+          linktags: [
+            '',
+            'mailto:',
+            'tel:',
+            '',
+          ]
+        }
+        for (let i = 0; i < obj.length; i++) {
+          let arr = obj[i];
+          let linksVal = ['', arr.email, arr.phone, arr.website];
+
+          let div = document.createElement('div');
+          div.className = 'userCard';
+          div.id = `userCard-${arr.id}`;
+
+          let innerDiv = document.createElement('div');
+          innerDiv.className = 'userCard-innerDiv';
+
+          let p = document.createElement('p');
+          p.className = 'userCard-name underline';
+          p.id = `userCard-name-${arr.id}`;
+
+          let ps = document.createElement('p');
+          ps.className = `userCard-title`;
+          ps.innerText = `${str.titles[0]}`;
+
+          let span = document.createElement('span');
+          span.className = 'userCard-nick underline';
+          span.id = `userCard-nick-${arr.id}`;
+
+          span.textContent = ` ${arr.username}`;
+          p.innerText = `${arr.name}`;
+          p.appendChild(span);
+          innerDiv.appendChild(ps)
+          innerDiv.appendChild(p);
+
+          for (let c = 1; c < str.titles.length; c++) {
+            let ps = document.createElement('p');
+            ps.className = `userCard-title`;
+            ps.innerText = `${str.titles[c]}`;
+            innerDiv.appendChild(ps);
+
+            let a = document.createElement('a');
+            a.className = `userCard-link`;
+            a.id = `userName-link-${str.links[c]}-${arr.id}`;
+            a.innerText = linksVal[c];
+            a.setAttribute(`href`, `${str.linktags[c]}${linksVal[c]}`)
+            innerDiv.appendChild(a)
+          }
+
+          div.appendChild(innerDiv);
+          secCard.appendChild(div);
+        }
+      }
+
+      fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(users => {
+          users.forEach(elem => {
+            console.log(elem)
+          }); return users
+        })
+        .then(users => createCards(users))
+        .catch((error) => { alert(`Error ${error}`) })
+    }
+  </script>
+</head>
+
+<body>
+  <section id="forCards">
+
+  </section>
+</body>
+
+</html>

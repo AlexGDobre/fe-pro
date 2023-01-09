@@ -45,7 +45,7 @@ function minjs(){
 function watching(){
   browserSync.init({
     server:{
-      baseDir:'./sborka'
+      baseDir:'./sborkagi'
     }
   });
   watch('./*.html', minhtml);

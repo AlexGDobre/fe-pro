@@ -13,7 +13,7 @@ const path={
 }
 
 function minhtml(){
-  return src('./*.html')
+  return src('pre-sborka/*.html')
   .pipe(htmlmin({
     collapseWhitespace:true,
   }))
@@ -30,12 +30,12 @@ function minhtml(){
 // }
 
 function cssminto(){
-  return src('*.css')
+  return src('pre-sborka/styles/*.css')
   .pipe(rename({suffix:'.min'}))
   .pipe(dest(path.cssp))
 }
 function minjs(){
- return src(['!gulpfile.js','*.js'])
+ return src(['pre-sborka/scripts/*.js'])
  .pipe(jsmin())
  .pipe(rename({suffix:'.min'}))
  .pipe(dest(path.js));
@@ -45,15 +45,15 @@ function minjs(){
 function watching(){
   browserSync.init({
     server:{
-      baseDir:'./sborkagi'
+      baseDir:'./sborka',
+      index:'testhtml.html'
     }
   });
-  watch('./*.html', minhtml);
-  watch('*.js',minjs);
+  watch('pre-sborka/*.html', minhtml);
+  watch('pre-sborka/scripts/*.js',minjs);
   // watch('*.sass',sasstomin);
-  watch('*.css',cssminto);
+  watch('pre-sborka/styles/*.css',cssminto);
   watch('sborka/**/*.*').on('change', browserSync.reload);
 }
-// Браузер открывает Error!
 
 exports.default = watching;

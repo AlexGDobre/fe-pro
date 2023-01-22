@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDoList</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="css.css">
+</head>
+<body>
+  <div id="app" class="container">
+    <header></header>
+    <main>
+      <div class="sortMenu">
+        <label for="">SortTime<input type="radio" name="sort" id="" disabled></label>
+        <label for="">SortName<input type="radio" name="sort" id="" disabled></label>
+        <label for="">SortName<input type="checkbox" name="" id="" @click="sortNameToggle"></label>
+      </div>
+      <div v-if="isSortNames" id="names">
+      <ul class="listodo">
+        <li v-for="item of todoNames">
+          <div class="listItem">
+            <div class="listItemNumber">{{item.time}}</div>
+            <div class="listItemText">{{item.text}}</div>
+            <div class="listItemButtons">
+              <button v-show='!isHow' @click="ediTimeTog">ET</button>
+
+              <div v-show="isHow">
+                <input type="time" name="" id="input-ediTime"
+              v-model="newTime">
+              <button @click="ediTimeFn(item)">S</button>
+              </div>
+              <button @click="renameFn(item)" id="btn-rename">RM</button>
+              <button @click="clearFn(item)" id="btn-clear">D</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div v-else id="times">
+      <ul class="listodo">
+        <li v-for="item of todoTime">
+          <div class="listItem">
+            <div class="listItemNumber">{{item.time}}</div>
+            <div class="listItemText">{{item.text}}</div>
+            <div class="listItemButtons">
+              <button v-show='!isHow' @click="ediTimeTog">ET</button>
+
+              <div v-show="isHow">
+                <input type="time" name="" id="input-ediTime"
+              v-model="newTime">
+              <button @click="ediTimeFn(item)">S</button>
+              </div>
+
+              <button @click="renameFn(item)" id="btn-rename">RM</button>
+              <button @click="clearFn(item)" id="btn-clear">D</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <form @submit.prevent="takeForm" id="formCreateItem" >
+      <fieldset>
+          <legend>What to do?</legend>
+          <div>
+            <label for="">Do:<input type="text" name="" id="todoText" v-model="newText"
+              required></label>
+            <label for="">Time:<input type="time" name="" id="" v-model="newTime"
+              required></label>
+          </div>
+        </fieldset>
+        
+        <input type="submit" value="CreateItem" id="btn-createItem">
+      </form>
+    </div>
+
+    </main>
+    
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
